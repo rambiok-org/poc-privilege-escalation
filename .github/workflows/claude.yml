@@ -1,0 +1,17 @@
+name: Claude Bot Action
+on:
+  issue_comment:
+    types: [created]
+jobs:
+  run-claude:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: anthropics/claude-code-action@main
+        with:
+          anthropic_api_key: "sk-ant-dummy-key"
+          github_token: ${{ secrets.ADMIN_PAT_SECRET }}
